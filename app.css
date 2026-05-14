@@ -1,0 +1,673 @@
+.app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ─── Particles ─────────────────────────────────────────────────────────────── */
+
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  background: var(--cyan);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-drift linear infinite;
+  box-shadow: 0 0 6px var(--cyan);
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────────── */
+
+.header {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(135deg, rgba(5, 13, 26, 0.95) 0%, rgba(7, 20, 45, 0.95) 100%);
+  border-bottom: 1px solid var(--border-active);
+  box-shadow: 0 4px 30px rgba(6, 182, 212, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 16px;
+}
+
+.header-content {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid var(--border-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  box-shadow: var(--glow-cyan);
+  animation: float 4s ease-in-out infinite;
+}
+
+.header-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--blue-electric), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+
+.header-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid var(--border-active);
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ─── Sections ───────────────────────────────────────────────────────────────── */
+
+.section {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  font-size: 1.2rem;
+}
+
+/* ─── Games Grid ─────────────────────────────────────────────────────────────── */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  border-color: var(--blue-electric);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-blue);
+}
+
+.game-card--active {
+  border-color: var(--cyan);
+  background: rgba(6, 182, 212, 0.1);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.game-card-img-wrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.game-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-card-img {
+  transform: scale(1.08);
+}
+
+.game-card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.game-card-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.game-card-currency {
+  font-size: 0.7rem;
+  color: var(--cyan);
+  font-weight: 600;
+  background: rgba(6, 182, 212, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.game-card-active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: shimmer 1.5s ease-in-out infinite;
+  background-size: 200% auto;
+}
+
+/* ─── Packages Grid ──────────────────────────────────────────────────────────── */
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .packages-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pkg-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 90px;
+}
+
+.pkg-card:hover {
+  border-color: var(--blue-electric);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-blue);
+}
+
+.pkg-card--active {
+  border-color: var(--cyan);
+  background: rgba(6, 182, 212, 0.12);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+}
+
+.pkg-popular {
+  position: absolute;
+  top: -1px;
+  right: 8px;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+.pkg-amount {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  direction: ltr;
+}
+
+.pkg-currency {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.pkg-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #22c55e;
+  direction: ltr;
+}
+
+.pkg-mru {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #86efac;
+}
+
+/* ─── Player Input ───────────────────────────────────────────────────────────── */
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.player-input {
+  width: 100%;
+  padding: 14px 48px 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.player-input:focus {
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.player-input::placeholder {
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.input-icon {
+  position: absolute;
+  right: 14px;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.input-hint {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.sender-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 1rem;
+}
+
+.input-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ─── Payment Grid ───────────────────────────────────────────────────────────── */
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pay-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pay-card:hover {
+  border-color: var(--blue-electric);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-blue);
+}
+
+.pay-card--active {
+  border-color: var(--cyan);
+  background: rgba(6, 182, 212, 0.12);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+}
+
+.pay-card-img-wrap {
+  width: 56px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pay-card-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pay-card-check {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 20px;
+  height: 20px;
+  background: var(--cyan);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ─── Transfer Box ───────────────────────────────────────────────────────────── */
+
+.transfer-box {
+  background: rgba(6, 182, 212, 0.05);
+  border: 1px solid var(--border-active);
+  border-radius: 14px;
+  padding: 16px;
+  animation: fadeInUp 0.3s ease;
+}
+
+.transfer-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.transfer-number-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.transfer-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  direction: ltr;
+}
+
+.copy-btn {
+  padding: 6px 14px;
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid var(--border-active);
+  border-radius: 8px;
+  color: var(--cyan);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: rgba(6, 182, 212, 0.25);
+  box-shadow: var(--glow-cyan);
+}
+
+.copy-btn--success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #22c55e;
+  animation: copy-success 0.3s ease;
+}
+
+.transfer-note {
+  font-size: 0.8rem;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+/* ─── Order Summary ──────────────────────────────────────────────────────────── */
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glow-blue);
+}
+
+.summary-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  direction: ltr;
+  text-align: left;
+}
+
+.summary-price {
+  color: #22c55e;
+  font-size: 1rem;
+}
+
+/* ─── WhatsApp Button ────────────────────────────────────────────────────────── */
+
+.whatsapp-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 16px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.whatsapp-btn:not(.whatsapp-btn--disabled):not(.whatsapp-btn--loading):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.whatsapp-btn:not(.whatsapp-btn--disabled):not(.whatsapp-btn--loading):active {
+  transform: translateY(0);
+}
+
+.whatsapp-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #4b5563, #374151);
+  box-shadow: none;
+}
+
+.whatsapp-btn--loading {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.whatsapp-icon {
+  display: flex;
+  align-items: center;
+}
+
+.btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin-slow 0.8s linear infinite;
+}
+
+.btn-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #f59e0b;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────── */
+
+.footer {
+  margin-top: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding-bottom: 20px;
+}
+
+.footer-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  opacity: 0.6;
+  border-radius: 8px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 360px) {
+  .games-grid {
+    gap: 8px;
+  }
+  .game-card-img-wrap {
+    width: 48px;
+    height: 48px;
+  }
+  .header-title {
+    font-size: 1.4rem;
+  }
+}
